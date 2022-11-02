@@ -129,6 +129,33 @@ function getDinosaurDescription(dinosaurs, id) {
  *  getDinosaursAliveMya(dinosaurs, 65, "unknown-key");
  *  //> ["WHQcpcOj0G"]
  */
+
+//  function getDinosaursAliveMya(dinosaurs, mya, key){
+//   let finalReturn = []
+  
+
+//   for(let i = 0; i < dinosaurs.length; i++){
+//     if(dinosaurs[i].mya.length > 1){
+//       if(dinosaurs[i].mya[0] >= mya && dinosaurs[i].mya[1] <= mya){
+//         if(key){
+//           if(dinosaurs[i].dinosaurId === key || dinosaurs[i].name === key || dinosaurs[i].pronunciation === key || dinosaurs[i].meaningOfName === key || dinosaurs[i].diet === key || dinosaurs[i].lengthInMeters === key || dinosaurs[i].period === key || dinosaurs[i].mya === key || dinosaurs[i].info === key){
+
+//             finalReturn.push(dinosaurs[i].name)
+  
+//           }
+//         }
+        
+//         else{
+//           finalReturn.push(dinosaurs[i].dinosaurId)
+//         }
+//       }
+//     }
+//   }
+
+//   return finalReturn
+//  }
+
+
 function getDinosaursAliveMya(dinosaurs, mya, key) {
 
   finalArr = []
@@ -138,23 +165,21 @@ function getDinosaursAliveMya(dinosaurs, mya, key) {
     if(dinosaurs[i].mya.length > 1){
       if(dinosaurs[i].mya[0] >= mya && dinosaurs[i].mya[1] <= mya){
         if(key){
-          finalArr.push(dinosaurs[i][key])
+          finalArr.push(dinosaurs[i][key])  
+        }else{
+          finalArr.push(dinosaurs[i].dinosaurId)
         }
-        finalArr.push(dinosaurs[i].dinosaurId)
       }
-
     } else {
       if(dinosaurs[i].mya[0] === mya || dinosaurs[i].mya[0] - 1 === mya){
         if(key){
           finalArr.push(dinosaurs[i][key])
-        }
-        finalArr.push(dinosaurs[i].dinosaurId) 
+        }else {
+          finalArr.push(dinosaurs[i].dinosaurId) 
+        }     
       }
-
     }
-
     }
-
     return finalArr
   }
 // function getDinosaursAliveMya(dinosaurs, mya, key) {

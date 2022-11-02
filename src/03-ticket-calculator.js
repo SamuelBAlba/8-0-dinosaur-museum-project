@@ -54,7 +54,222 @@ const exampleTicketData = require("../data/tickets");
     calculateTicketPrice(tickets, ticketInfo);
     //> "Entrant type 'kid' cannot be found."
  */
-function calculateTicketPrice(ticketData, ticketInfo) {}
+// function calculateTicketPrice(ticketData, ticketInfo) {
+// let genChild = 2000  
+// let genAdult = 3000
+// let genSenior = 2500
+// // let childMem = genChild - 500
+// // let memDiscount = 200
+// // general admission
+// if(ticketInfo.ticketType === 'general'){
+//   // adult general
+//   if(ticketInfo.entrantType === 'adult'){
+//     if(ticketInfo.extras.includes('movie')){
+//       genAdult += 1000
+//     }else if(ticketInfo.extras.includes('education')){
+//       genAdult += 1200
+//     }else if(ticketInfo.extras.includes('terrace')){
+//       genAdult += 1000
+//     }
+//     return genAdult
+//     // child general
+//   }else if(ticketInfo.entrantType === 'child'){
+//     if(ticketInfo.extras.includes('movie')){
+//       genChild += 1000
+//     }else if(ticketInfo.extras.includes('education')){
+//       genChild += 1000
+//     }else if(ticketInfo.extras.includes('terrace')){
+//       genChild += 500
+//     }
+//     return genChild
+//     // senior general
+//   }else if(ticketInfo.entrantType === 'senior'){
+//     if(ticketInfo.extras.includes('movie')){
+//       genSenior += 1000
+//     }else if(ticketInfo.extras.includes('education')){
+//       genSenior += 1200
+//     }else if(ticketInfo.extras.includes('terrace')){
+//       genSenior += 1000
+//     }
+//     return genSenior
+//   }
+//   // otherwise return error/ only 3 options for entrantType
+//   return `Entrant type '${ticketInfo.entrantType}' cannot be found.`
+ 
+//   // membership admission
+// } else if(ticketInfo.ticketType === 'membership'){
+//   // adult membership
+//   if(ticketInfo.entrantType === 'adult'){
+//     if(ticketInfo.extras.includes('movie')){
+//       genAdult += 1000
+//     }else if(ticketInfo.extras.includes('education')){
+//       genAdult += 1200
+//     }else if(ticketInfo.extras.includes('terrace')){
+//       genAdult += 1000
+//     }
+//     genAdult -= 200
+//     return genAdult
+//   }else if(ticketInfo.entrantType === 'child'){
+//     if(ticketInfo.extras.includes('movie')){
+//       genChild += 1000
+//     }else if(ticketInfo.extras.includes('education')){
+//       genChild += 1000
+//     }else if(ticketInfo.extras.includes('terrace')){ 
+//       genChild += 500
+//     }
+//     genChild -= 500
+//     return genChild
+//   }else if(ticketInfo.entrantType === 'senior'){
+//     if(ticketInfo.extras.includes('movie')){
+//       genSenior += 1000
+//     }else if(ticketInfo.extras.includes('education')){
+//       genSenior += 1200
+//     }else if(ticketInfo.extras.includes('terrace')){
+//       genSenior += 1000
+//     }
+//     genSenior -= 200
+//     return genSenior
+//   }
+// } else{
+//   return `Ticket type '${ticketInfo.ticketType}' cannot be found.`
+// }
+// }
+
+
+
+function calculateTicketPrice(ticketData, ticketInfo) {
+  let genChild = 2000  
+  let genAdult = 3000
+  let genSenior = 2500
+
+  if(ticketInfo.ticketType === 'general'){
+    if(ticketInfo.entrantType === 'adult'){
+      for(let i = 0; i < ticketInfo.extras.length; i ++){
+        if(ticketInfo.extras[i].includes('movie')){
+          genAdult += 1000
+        }else if(ticketInfo.extras[i].includes('education')){
+          genAdult += 1200
+        }else if(ticketInfo.extras[i].includes('terrace')){
+          genAdult += 1000
+        }else{
+          return `Extra type '${ticketInfo.extras[i]}' cannot be found.`
+        }
+
+      }
+      return genAdult
+    
+    }else if(ticketInfo.entrantType === 'child'){
+      for(let i = 0; i < ticketInfo.extras.length; i ++){
+        if(ticketInfo.extras[i].includes('movie')){
+          genChild += 1000
+        }else if(ticketInfo.extras[i].includes('education')){
+          genChild += 1000
+        }else if(ticketInfo.extras[i].includes('terrace')){
+          genChild += 500
+        }else{
+        return `Extra type '${ticketInfo.extras[i]}' cannot be found.`
+        }
+      }
+      return genChild
+    }else if(ticketInfo.entrantType === 'senior'){
+      for(let i = 0; i < ticketInfo.extras.length; i ++){
+        if(ticketInfo.extras[i].includes('movie')){
+          genSenior += 1000
+        }else if(ticketInfo.extras[i].includes('education')){
+          genSenior += 1200
+        }else if(ticketInfo.extras[i].includes('terrace')){
+          genSenior += 1000
+        }else{
+          return `Extra type '${ticketInfo.extras[i]}' cannot be found.`
+        }
+      }
+      return genSenior
+    }else{
+     return `Entrant type '${ticketInfo.entrantType}' cannot be found.`
+    }
+  }else if(ticketInfo.ticketType === 'membership'){
+    if(ticketInfo.entrantType === 'adult'){
+      genAdult -= 200
+
+      for(let i = 0; i < ticketInfo.extras.length; i++){
+        if(ticketInfo.extras[i].includes('movie')){
+          genAdult += 1000
+        }else if(ticketInfo.extras[i].includes('education')){
+          genAdult += 1200
+        }else if(ticketInfo.extras[i].includes('terrace')){
+          genAdult += 1000
+        }else{
+          return `Extra type '${ticketInfo.extras[i]}' cannot be found.`
+        }
+      }
+      return genAdult
+      // error
+    }else if(ticketInfo.entrantType === 'child'){
+      genChild -= 500
+
+      for(let i = 0; i < ticketInfo.extras.length; i++){
+        if(ticketInfo.extras[i].includes('movie')){
+          genChild += 1000
+        }else if(ticketInfo.extras[i].includes('education')){
+          genChild += 1000
+        }else if(ticketInfo.extras[i].includes('terrace')){
+          genChild += 500
+        }else{
+          return `Extra type '${ticketInfo.extras[i]}' cannot be found.`
+        }
+      }
+        return genChild
+      // error
+    }else if(ticketInfo.entrantType === 'senior'){
+      genSenior -= 200
+
+      for(let i = 0; i < ticketInfo.extras.length; i++){
+        if(ticketInfo.extras[i].includes('movie')){
+          genSenior += 1000
+        }else if(ticketInfo.extras[i].includes('education')){
+          genSenior += 1200
+        }else if(ticketInfo.extras[i].includes('terrace')){
+          genSenior += 1000
+        }else{
+          return `Extra type '${ticketInfo.extras[i]}' cannot be found.`
+        } 
+      }
+      return genSenior
+
+    }else{
+      return `Entrant type '${ticketInfo.entrantType}' cannot be found.`
+    }
+  }else{
+    return `Ticket type '${ticketInfo.ticketType}' cannot be found.`
+  }
+}
+
+
+
+
+
+
+
+
+
+
+// two types of tickets general or membership
+// 3 add on options
+  
+
+
+// will be looping through tickets ??
+// returns 3 different erros
+// 1. ticketType error 2. entrantType error & extras error
+// two base prices for each ticket (general or membership)
+// membership discount: childMem = 500 memDiscount = 200 (subtract from general )
+// 3 add on posibilities (terraceChild = 500 & terraceAdd = 100)
+// eduChild = 1000 eduAdd = 1200
+// movieAdd = 1000
+// create finalAddOn
+// returns final price of ticket in cents
+
+
 
 /**
  * purchaseTickets()
@@ -109,8 +324,47 @@ function calculateTicketPrice(ticketData, ticketInfo) {}
     purchaseTickets(tickets, purchases);
     //> "Ticket type 'discount' cannot be found."
  */
-function purchaseTickets(ticketData, purchases) {}
+function purchaseTickets(ticketData, purchases) {
+  let genAdult = 3000
+  let genChild = 2000
+  let genSenior = 2500
 
+  for(let i = 0; i < purchases.length; i++){
+    if(purchases[i].ticketType === 'general'){
+      if(purchases[i].entrantType === 'adult'){
+        for(let j = 0; j < purchases[i].extras.length; j++){
+          if(purchases[i].extras[j].includes('movie')){
+            genAdult += 1000
+          }else if(purchases[i].extras[j].includes('education')){
+            genAdult += 1200
+          }else if(purchases[i].extras[j].includes('terrace')){
+            genAdult += 1000
+          }else{
+            return `Extra type '${purchases[i].extras[j]}' cannot be found.`
+          }
+        }
+      }else if(purchases[i].entrantType === 'child'){
+        for(let j = 0; j < purchases[i].extras.length; j++){
+          if(purchases[i].extras[j].includes('movie')){
+            genChild += 1000
+          }else if(purchases[i].extras[j].includes('education')){
+            genChild += 1000
+          }else if(purchases[i].extras[j].includes('terrace')){
+            genChild += 500
+          }else{
+            return `Extra type '${purchases[i].extras[j]}' cannot be found.`
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+// will return a string
+// takes in an array of objects
+// will need to loop throgh purchases
 // Do not change anything below this line.
 module.exports = {
   calculateTicketPrice,
